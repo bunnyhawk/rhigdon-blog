@@ -4,13 +4,13 @@
   }
 
   &__link {
-    &,
-    &:visited {
-      color: var(--color-theme-primary);
-      text-decoration: none;
-    }
+    color: var(--color-theme-primary);
+    text-decoration: none;
 
-    &:hover {
+
+    &:active,
+    &:hover,
+    &:focus {
       text-decoration: underline;
     }
   }

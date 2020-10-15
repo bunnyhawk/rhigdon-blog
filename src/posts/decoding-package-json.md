@@ -14,7 +14,45 @@ The package.json contains all of the data about the application you are building
 
 Here is an example package.json:
 
-<script src="https://gist.github.com/bunnyhawk/14a7ef26d6c611748726.js"></script>
+```json
+{
+  "name": "example/app",
+  "version": "1.0.0",
+  "description": "Example application for a medium blog on package.json files",
+   "scripts": {
+    "analyze": "eslint",
+    "build": "npm run scripts && npm run styles",
+    "scripts": "browserify ./example.docs.jsx -o ./example.docs.js",
+    "styles": "sass ./example.docs.scss ./example.docs.css",
+    "test": "test-jest",
+    "watch": "npm run scripts -- -wd & npm run styles -- -d -w './**/*.scss' & browser-sync start --files '*.(css|html|js)' --server"
+  },
+  "author": "Your name here",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "babelify": "*",
+    "bootstrap": "^3.3.5",
+    "browserify": "11.0.1",
+    "eslint": "~1.2.1",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-file-include": "^0.13.7",
+    "gulp-sass": "^3.0.3",
+    "gulp-minify-css": "^1.2.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "jquery": "^2.1.4",
+    "react": "*"
+  },
+  "esLint": {
+    "file": [
+      "./**/*.jsx"
+    ]
+  },
+  "private": true
+}
+```
 
 Though the `name` and `version` might seem throw-away, they are actually very important to this file. NPM won’t run an install without them. There are other bits of metadata in here as well that help users find your application, provided that you haven’t set the package to `“private”: true` like I did here. You can include a lot of things I don’t have listed in this sample, including keywords, contributors, and a homepage url.
 

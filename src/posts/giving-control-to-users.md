@@ -7,16 +7,16 @@ tags:
   - blog
 ---
 
-I recently had the opportunity to attend An Event Apart, a conference geared toward UX and graphic designers and front-end developers. The agenda is broad in scope, covering industry trends, content, accessibility, empathy, and even the social ramifications of the products we all create.
+I recently had the opportunity to attend [An Event Apart](http://aneventapart.com), a conference geared toward UX and graphic designers and front-end developers. The agenda is broad in scope, covering industry trends, content, accessibility, empathy, and even the social ramifications of the products we all create.
 
 I’ve been lucky enough to attend this event twice in years past and both times had my mind blown. The stand-out sessions centered around revolutionary concepts we now take for granted in development:
 
-* Responsive design — Ethan Marcotte schooled me on media queries and how to build a truly responsive website way back in 2010.
-* Mobile First — Luke Wroblewski taught me the how’s and why’s of designing and developing with mobile users in mind first.
+* Responsive design — [Ethan Marcotte](https://aneventapart.com/news/post/responsive-patterns-with-ethan-marcotte) schooled me on media queries and how to build a truly responsive website way back in 2010.
+* Mobile First — [Luke Wroblewski](https://aneventapart.com/speakers/luke-wroblewski) taught me the how’s and why’s of designing and developing with mobile users in mind first.
 
 This year’s event was no different.
 
-Though the content ran the gamut (as is typical), a common theme emerged across many of the sessions: give control back to your users.
+Though the content ran the gamut (as is typical), a common theme emerged across many of the sessions: **give control back to your users**.
 
 ## Opting Out — Control through exclusion
 
@@ -30,7 +30,7 @@ Parmenter sent Bloom and Wild an email suggesting the company consider allowing 
 
 ## Accessibility — Control through inclusion
 
-While roughly half the speakers touched on accessibility and inclusion by designing with empathy, Derek Featherstone put it best:
+While roughly half the speakers touched on accessibility and inclusion by designing with empathy, [Derek Featherstone](https://twitter.com/feather) put it best:
 
 > Disabled people aren’t the edge case. Tech people are the edge case. We represent a small portion of the population and we’re in charge of designing and building. Too often we design for people exactly like us.
 

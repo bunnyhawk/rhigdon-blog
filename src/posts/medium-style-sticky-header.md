@@ -13,9 +13,78 @@ First we will put down some basic markup for the HTML. I’m using a div to wrap
 
 Everything in the header is wrapped in the “header” class and element. Below it is an empty div that we will attach a large background image to for display purposes.
 
-<script src="https://gist.github.com/bunnyhawk/8ab8b72474c46e3bdb73214411bf1c21.js"></script>
+```css
+/* Defaults and resets */
+html {
+  box-sizing: border-box;
+  font-family: Tahoma, Verdana, Segoe, sans-serif;
+}
 
-<script src="https://gist.github.com/bunnyhawk/51cfae82fe83c91bba74bf5d7338a8a6.js"></script>
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+* {
+  font-family: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* Content container */
+.wrapper {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Header */
+.header {
+  align-items: center;
+  background: rgba(32, 50, 56, .9);
+  color: #00C1BA;
+  display: flex;
+  height: 70px;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: fixed;
+  transition: transform 300ms ease-in-out;
+  transform: translateY(0);
+  width: 100%;
+}
+
+.header.is-hidden {
+  transform: translateY(-100%);
+}
+
+.header_title {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.header_nav {
+  list-style: none;
+  padding: 0;
+}
+
+.header_navItem {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.header_navItem a {
+  text-decoration: none;
+}
+```
 
 I put in some opinionated defaults at the top. This helps me standardize the box model along with the colors, fonts, and line-heights throughout the project. This isn’t important to this project, but helpful on larger scale ones so I tend to always have them.
 
@@ -28,7 +97,31 @@ The general idea of styling the header works like this:
 
 Now on to the javascript portion.
 
-<script src="https://gist.github.com/bunnyhawk/8bfb39f1fd7206665dcd0e1954f793f2.js"></script>
+```js
+const header = document.querySelector('.header');
+const pageWrap = document.querySelector('.wrapper');
+var lastScrollTop = 0;
+
+function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+    const context = this;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(context, args), wait);
+  };
+}
+
+function onScroll() {
+  let currScrollTop = pageWrap.scrollTop;
+  let isScrollingDown = currScrollTop > lastScrollTop;
+  let isHeaderVisible = currScrollTop < header.height;
+
+  header.classList.toggle('is-hidden', isScrollingDown && !isHeaderVisible);
+  lastScrollTop = currScrollTop;
+}
+
+pageWrap.addEventListener('scroll', debounce(onScroll, 16));
+```
 
 At the top we are grabbing a couple of elements from the page that we need to hook on to within “const” variables. Const is a block scope variable (much like “let”) introduced in ES2015. It can’t be reassigned and is read-only.
 

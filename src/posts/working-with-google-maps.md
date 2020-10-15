@@ -42,7 +42,35 @@ I wanted to define even more variables to add a marker and exact location and ra
 
 I decided to keep the basic callback method, but setup the map code as a [module export](http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html) and pass that along to the callback. This can either be in a separate file (ideally for easy caching) or inside of the same script on the page.
 
-<script src="https://gist.github.com/bunnyhawk/126fb1508e71088f1be1.js"></script>
+```js
+// Google Script on page:
+// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=googleMap.init" 
+// 	async defer></script>
+        
+var googleMap = (function(){
+	var myLatLng = {lat: 47.550987, lng: -122.277863},
+		map,
+		marker;
+
+	function initMap() {
+		map = new google.maps.Map(document.getElementById('map'), {
+			center: myLatLng,
+			zoom: 13
+		});
+
+		marker = new google.maps.Marker({
+			position: myLatLng,
+			map: map
+		});
+	}
+
+	return {
+		init: function() {
+			return initMap();
+		}
+	};
+}());
+```
 
 I could get the same thing done with a little bit less code, but this pattern gives me the ability to easily extend it for any future needs (updated directions, new markers, whatever).
 
