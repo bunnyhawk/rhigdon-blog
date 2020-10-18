@@ -1,23 +1,24 @@
 ---
-title: Sending an Email with Nodemailer, AWS and Serverless
-date: '2020-10-16'
+title: Sending an Email with Nodemailer, AWS Lambda, and Serverless
+date: '2020-10-18'
 tags:
   - javascript
   - back-end
   - node
   - serverless
   - aws
+  - aws lambda
   - blog
 ---
 
-I spent the last few months helping organize an especially heavy project with some new friends called [Remembering Covid-19](https://www.rememberingcovid19.co/). It's meant to serve as a digital memorial for Americans that have lost their lives due to COVID. I agreed to help develop it in my spare time in while in-between jobs. It is obviously a good cause and gave me some room to play around with some fresh technology. 
+I spent the last few months helping organize an especially heavy project with some new friends called [Remembering COVID-19](https://www.rememberingcovid19.co/). It's meant to serve as a digital memorial for Americans that have lost their lives due to COVID. I agreed to help develop it in my spare time in while in-between jobs. It is obviously a good cause and gave me some room to play around with some fresh technology. 
 
-What's live is actually a second iteration entirely. The original was a React SPA. It worked fine, but I wasn't happy with the overall performance with so many DOM elements on the homepage. I realized pretty late in the game that it was all overkill for my actual needs. I took it as an opportunity to write some honest, top-to-bottom, back-to-basics, vanilla javascript.
+What's live is actually a second iteration entirely. The original was a React [SPA](https://en.wikipedia.org/wiki/Single-page_application). It worked fine, but I wasn't happy with the overall performance with so many DOM elements on the homepage. I should have realized early on that it was all overkill for my actual needs, but bad software decisions can sneak up on you like that sometimes. I took it as an opportunity to write some honest, top-to-bottom, back-to-basics, vanilla javascript.
 
 For me, the contact form was a surprisingly complicated section to build. I had a few basic needs that added to the complexity of the ask:
-* This was a non-profit and the budget was basically non-existent. Free'ish tools are a must.
+* This was a non-profit and the budget was essentially non-existent. Free (or at least very cheap) tools are a must.
 * I needed the form to mail to a contact alias (or a personal inbox).
-* Because we needed "proof", the form had to handle file inputs.
+* Because we needed "proof", the form had to pass along user submitted files.
 
 This last bullet in particular was what nixed most of the out-of-box solutions. Beyond that, most of the mailers (Mailgun, Sendgrid, et al.) I'd researched for this were very much overkill for my needs. I wasn't looking to send to an entire list of contacts and I didn't need it to be very sophisticated in terms of functionality; just pass along the details and approved file types to our alias.
 
@@ -42,13 +43,13 @@ custom:
 provider:
   name: aws
   runtime: nodejs12.x
-  stage: dev
+  stage: dev # Using dev here, but could be stage or production as well
   region: us-west-2 # Use whatever region makes sense for your location / project
   apiGateway:
     binaryMediaTypes:
       - "*/*" # Make sure the form is ready to pass data and files
   environment:
-    MAIL_ACCESS: "${self:custom.secrets.MAIL_ACCESS}" # The email account pass you have setup for this service
+    MAIL_ACCESS: "${self:custom.secrets.MAIL_ACCESS}" # Our password via a secrets config. More on this below
 
 functions:
   covidApi:
@@ -69,9 +70,9 @@ functions:
 
 ## Keeping Secrets
 
-You'll note that I'm calling the password via a separate `secrets.yml` file. Make sure this is in your `.gitignore` as well so it doesn't end up public facing in logs or in github.
+You'll note that I'm calling the password via a separate `secrets.yml` file. Make sure this is in your `.gitignore` file. We don't want it to end up public facing in logs or Github itself.
 
-Here is a general example on the format for that file
+Here is a general example on the format for that file:
 
 **secrets.yml**
 ```yaml
@@ -84,9 +85,14 @@ dev: # Environment specific variables
   MAIL_ACCESS: "YOUR_PASSWORD_HERE"
 ```
 
-Below is our handler file. Once again, I'm marking it up with comments to help you follow along with the hows and whys of each piece. 
-
 ## Building routes and handling data with handler.js
+
+Below is our handler file. Once again, I'm marking it up with comments to help you follow along with the hows and whys of each piece. This one is a bit longer, but there are essentially three main pieces.
+* Setting up the server along with the initial route
+* Parse the incoming data from `/send-mail` with busboy and prep files to pass along
+* Build the email template with Nodemailer and send. 
+
+**handler.js**
 ```js
 "use strict";
 
@@ -229,7 +235,7 @@ app.post("/send-mail", async (req, res, next) => {
 module.exports.covidApi = sls(app);
 ```
 
-You might notice that I'm sending mail via gmail in nodemailer. This is probably not a production-ready solution for most, but it's an easy way to get up and running for free while learning about the systems in place. Nodemailer has some more info on [gmail integration here](https://nodemailer.com/usage/using-gmail/). For your project, you could easily hook it up to a "contact@whatever.com" email if that better suits your needs.
+You might notice that I'm sending mail via gmail in nodemailer. This is probably not a production-ready solution for most, but it's an easy way to get up and running for free while learning about the systems in place. Nodemailer has some more info on [gmail integration here](https://nodemailer.com/usage/using-gmail/). This can easily be swapped out with any ESP that meets your needs.
 
 Below is my submit function that I've hooked up to the form. I've mostly added it for clarity on a decent way to setup the file data for our API. In this scenario, `submissionProof` is the name and ID of our file input.
 
@@ -267,4 +273,4 @@ const onSubmit = async (event) => {
 };
 ```
 
-You can see my full code up in my [Covid Memorial API](https://github.com/bunnyhawk/covid-memorial-api) in Github.
+That is essentially it. You can see the full code up in my [COVID Memorial API](https://github.com/bunnyhawk/covid-memorial-api) in Github. You're also welcome to check out how it was integrated by [our front-end](https://github.com/bunnyhawk/covid-names). Thank you for taking the time to read.
