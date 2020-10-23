@@ -1,6 +1,6 @@
 ---
 title: Mastering Reduce Functions
-date: '2020-10-20'
+date: '2020-10-23'
 tags:
   - javascript
   - front-end
