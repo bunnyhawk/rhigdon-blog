@@ -6,6 +6,6 @@
   "authorHandle": "@positronicshell",
   "authorName": "Robert Higdon",
   "enableThirdPartyComments": false,
-  "maxPostsPerPage": 5,
+  "maxPostsPerPage": 10,
   "faviconPath": "/images/favicon.png"
 }
