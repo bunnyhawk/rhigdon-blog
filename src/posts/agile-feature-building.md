@@ -1,5 +1,5 @@
 ---
-title: Agile-ish  - Feature Story Building
+title: Agile-ish — Feature Story Building
 date: '2020-11-14'
 tags:
   - teamwork
