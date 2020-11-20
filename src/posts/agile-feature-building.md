@@ -2,6 +2,8 @@
 title: Agile-ish — Feature Story Building
 date: '2020-11-14'
 tags:
+  - soft-skills
+  - process
   - teamwork
   - agile
 ---

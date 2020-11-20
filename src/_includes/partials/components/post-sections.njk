@@ -1,0 +1,80 @@
+{% if postListItems.length %}
+  <section class="[ post-list ] [ pad-top-700 gap-bottom-600 ]">
+    <div class="[ inner-wrapper ] [ sf-flow ] post-section">
+      <h2 class="[ post-list__heading ] [ text-700 md:text-800 ]">Latest Post</h2>
+      {% for item in postListItems.slice(0,1) %}
+        {% if item.date.getTime() <= global.now %}
+          <div class="post-list__item">
+            <a href="{{ item.url }}" class="post-list__link" rel="bookmark">
+              <h3 class="font-base leading-tight text-600 weight-mid">
+                {{ item.data.title }} 
+              </h3>
+              <p class="text-500 gap-top-300 weight-mid">
+                <time datetime="{{ item.date | w3DateFilter }}">{{ item.date | dateFilter }}</time>
+              </p>
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+  <section class="[ post-list ] [ pad-top-700 gap-bottom-900 ] post-sections">
+    <div class="[ inner-wrapper ] [ sf-flow ] [ pad-top-600 md:pad-top-300 ] post-section">
+      <h2 class="[ post-list__heading ] [ text-600 md:text-700 ]">Front-end</h2>
+      <ol class="[ post-list__items ] [ sf-flow ] [ pad-top-300 ]" reversed>
+        {% for item in frontEndItems | reverse %}
+          {% if item.date.getTime() <= global.now %}
+            <li class="post-list__item">
+              <a href="{{ item.url }}" class="post-list__link" rel="bookmark">
+                <h3 class="font-base leading-tight text-500 weight-mid">
+                  {{ item.data.title }} 
+                </h3>
+                <p class="text-400 gap-top-200 weight-mid">
+                  <time datetime="{{ item.date | w3DateFilter }}">{{ item.date | dateFilter }}</time>
+                </p>
+              </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ol>
+    </div>
+    <div class="[ inner-wrapper ] [ sf-flow ] [ pad-top-600 md:pad-top-300  ] post-section">
+      <h2 class="[ post-list__heading ] [ text-600 md:text-700 ]">Back-end</h2>
+      <ol class="[ post-list__items ] [ sf-flow ] [ pad-top-300 ]" reversed>
+        {% for item in backEndItems | reverse %}
+          {% if item.date.getTime() <= global.now %}
+            <li class="post-list__item">
+              <a href="{{ item.url }}" class="post-list__link" rel="bookmark">
+                <h3 class="font-base leading-tight text-500 weight-mid">
+                  {{ item.data.title }} 
+                </h3>
+                <p class="text-400 gap-top-200 weight-mid">
+                  <time datetime="{{ item.date | w3DateFilter }}">{{ item.date | dateFilter }}</time>
+                </p>
+              </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ol>
+    </div>
+    <div class="[ inner-wrapper ] [ sf-flow ] [ pad-top-600 md:pad-top-300 ] post-section">
+      <h2 class="[ post-list__heading ] [ text-600 md:text-700 ]">Soft Skills</h2>
+      <ol class="[ post-list__items ] [ sf-flow ] [ pad-top-300 ]" reversed>
+        {% for item in softSkillItems | reverse %}
+          {% if item.date.getTime() <= global.now %}
+            <li class="post-list__item">
+              <a href="{{ item.url }}" class="post-list__link" rel="bookmark">
+                <h3 class="font-base leading-tight text-500 weight-mid">
+                  {{ item.data.title }} 
+                </h3>
+                <p class="text-400 gap-top-200 weight-mid">
+                  <time datetime="{{ item.date | w3DateFilter }}">{{ item.date | dateFilter }}</time>
+                </p>
+              </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ol>
+    </div>
+  </section>
+{% endif %}

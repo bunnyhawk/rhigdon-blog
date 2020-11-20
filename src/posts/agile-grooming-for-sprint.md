@@ -2,6 +2,8 @@
 title: Agile-ish ⁠— Grooming - Preparing stories for your sprint
 date: '2020-11-19'
 tags:
+  - soft-skills
+  - process
   - teamwork
   - agile
 ---
