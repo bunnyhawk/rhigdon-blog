@@ -3,7 +3,7 @@
     --flow-space: #{get-size(800)};
 
     /**
-     * Generic HTML styles 
+     * Generic HTML styles
      */
     h2 + *,
     h3 + * {
@@ -120,12 +120,11 @@
   }
 
   &__footer {
-    background: var(--color-theme-highlight);
+    background: var(--color-theme-highlight-block);
 
     h2 {
       flex-shrink: 0;
       margin-right: get-size('base');
-      color: var(--color-dark);
     }
 
     h2 a {
