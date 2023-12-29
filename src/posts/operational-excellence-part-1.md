@@ -7,15 +7,15 @@ tags:
   - beginner
 ---
 
-In the realm of engineering organizations, the importance of on-call rotations is paramount. Not only do they foster healthier coding practices through a sense of accountability, but they also help boost confidence and trust from customers and stakeholders. Even though being on-call may occasionally involve working during non-standard hours, the burden can be significantly lessened with the correct setup of processes and rotations.
+In engineering organizations, on-call rotations are crucial. They promote responsible coding practices through accountability and enhance trust from customers and stakeholders. Although being on-call sometimes requires working during non-standard hours, a well-structured process and rotation system can substantially reduce this burden.
 
 ## The Role and Responsibilities of On-Call
 
-The on-call team is primarily focused on operational work. This focus on operations over standard feature work has a significant benefit – it minimizes the risk of essential action items or security risks sitting in the backlog indefinitely.
+The on-call is primarily tasked with operational responsibilities. Focusing on these tasks rather than standard feature work minimizes the risk of essential action items, which are critical to operational health, being left unattended in the backlog.
 
-As the first in line for triaging incoming incidents, the on-call team plays a critical role. They need to verify if the issue at hand is reproducible and whether it has been correctly prioritized. Depending on the incident's severity, they might need to tackle the highest priority items immediately.
+As the first responders to incoming incidents, the on-call plays a crucial role. They must verify whether the reported issue can be replicated and if it has been prioritized appropriately. Depending on the issue's severity, high-priority matters may need to be addressed immediately.
 
-When there are no immediate needs based on Service Level Agreements (SLAs), the on-call team should prioritize action items. It's worth noting that failure to fix our processes, monitoring, or other gaps will result in the same issues recurring. This is why action items should always be high on the priority list. Once action items are addressed, security updates should be next in line.
+When there are no immediate demands based on Service Level Agreements (SLAs), the on-call team should focus on action items. It's important to remember that failing to address gaps in our processes or monitoring could lead to recurring issues.
 
 ## Rotations: Spreading the Load
 
@@ -25,11 +25,11 @@ Regardless of the setup, it is vital that everyone understands their responsibil
 
 ## Incident Prioritization: Bucketing Incidents
 
-Defining what’s critical for your product and customer needs is a crucial first step in effective incident management. Questions to consider include: Do you have Service Level Agreements (SLAs) defined? Could more monitoring and alarms of your product's uptime be valuable?
+Defining what’s critical for your product and customer needs is a crucial first step in effective incident management. Questions to consider include: Do you have SLA defined? Could more monitoring and alarms of your product's uptime be valuable?
 
 It's also important to prioritize the critical services and features to your product. For instance, the downtime of a review platform might not be significant enough to page an engineer at night, but a failing payment system certainly would be.
 
-### Criticality
+### Example of a potential Priority Matrix
 | Priority | Scope |
 | --- | --- |
 | P1 (Highest) | • “All hands on deck.”<br>• More than one customer/stakeholder is impacted.<br>• Business-critical functionality blocked. |
@@ -38,7 +38,7 @@ It's also important to prioritize the critical services and features to your pro
 | P4 (Low) | • A small number of customers/stakeholders are impacted.<br>• Expectations not met. |
 | P5 (Lowest) | • Few customers/stakeholders are impacted.<br>• No functionality is impaired. |
 
-### SLAs
+### Example of potential SLAs
 | Priority | Response Time | Check-in Frequency | Hours | Mitigation |
 | --- | --- | --- | --- | --- |
 | P1 (Highest) | 15 minutes | 15 minutes | Any hour of any day | Within 2 hours |
@@ -49,16 +49,20 @@ It's also important to prioritize the critical services and features to your pro
 
 ## Incident Management: What's Next After Being Paged?
 
-Once you've been paged, the first task is to validate and reproduce the incident. This is part of the triage process that helps better understand the problem. You should then consider yourself the first in line for mitigation. It's critical to understand that the “real” fix can wait for a space to think it through properly, especially in an after-hours situation. The actual fix might be the same as the mitigation, but more substantial work is often required to make systems more robust or issues more easily observable.
+Once you've been paged, your initial task is to confirm and recreate the incident. This is part of the triage process, which aids in comprehending the problem better. After that, consider yourself as the primary person for mitigation, not necessarily the whole fix. It's important to realize that sometimes the "actual" fix can be deferred until there's sufficient time to think it through, particularly during after-hours incidents. The final solution may align with the mitigation, but often, more substantial work is necessary to enhance system robustness or make issues more observable.
 
-## Mitigation: The Paths to Take
+## Mitigation
 
-Before diving into mitigation, it's vital to ensure that everyone in the rotation has access to the code they oversee, they've got it installed and locally development-ready, and they have a general understanding of the ecosystem. This might seem like a no-brainer, but it is often overlooked.
+Before discussing mitigation, it's critical that everyone in the rotation has access to, and an understanding of, the code they oversee. They should have it installed and ready for local development. This may seem obvious, but it's often overlooked.
 
-Moreover, on-call people should be able to push code to production in an off-hours hotfix situation. In such situations, you might need to adjust permissions in “break glass” scenarios you otherwise wouldn’t allow. This could mean ignoring standard code review and merging processes, skipping longer-running tests, or other deployment steps that slow down a release.
+Additionally, on-call personnel should be able to push code to production in off-hour hotfix situations. This may require adjusting permissions in emergency scenarios, potentially bypassing standard code review, merging processes, skipping longer-running tests, or other deployment steps that could slow release.
 
-If you’re lucky enough to be in a situation where a new feature is the main offender, and your team builds things that are feature-flagged, the quickest path to mitigation is simply toggling that flag. However, many factors could complicate a path to a fix, such as updates to the database and poorly gated code.
+If a new feature is causing issues and your team uses feature flags, the quickest mitigation strategy is to toggle that flag. However, other factors like database updates or poorly gated code could complicate this process.
+
+When toggling a feature flag isn't viable, there are two primary strategies for handling incidents: rolling back code or fixing it forward. Rolling back reverts the system to a previous, functional state. It can be quick but might also undo recent updates. Fixing it forward involves identifying and correcting the current problem without reverting. This may take more time but is typically a more sustainable solution as it directly addresses the issue. The choice between these strategies depends on the incident's severity, the system's complexity, and the available troubleshooting and repair resources.
+
+**Writing recommendations for each production release** is a good practice. Generally, the engineers who wrote the code can provide the best advice on safely reverting changes. This gives on-call personnel a quick guide for proceeding.
 
 ## After Care: Following Up
 
-After an incident has been mitigated, there's still work to be done. It's crucial to ensure that there is scope for action items that came out of incidents or retrospectives on major outages. These action items should be considered a very high priority for the person on call and ideally should be tackled right after a P1 or P2 incident if one exists. Remember, the goal is to prevent another disruptive incident, especially off-hours, that could have been avoided if you’d just spent the time needed to address the underlying issue.
+After an incident has been mitigated, there's still work to be done. It's crucial to ensure that there is space for action items that came out of incidents or retrospectives on major outages. These action items should be considered a very high priority for the person on call and ideally should be tackled right after a P1 or P2 incident if one exists. Remember, the goal is to prevent another disruptive incident, especially off-hours, that could have been avoided if you’d just spent the time needed to address the underlying issue.
