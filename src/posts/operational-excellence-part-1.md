@@ -1,6 +1,6 @@
 ---
 title: Operational Excellence - Part 1 - On-Call
-date: '2023-12-28'
+date: '2023-12-30'
 tags:
   - soft-skills
   - management
@@ -11,21 +11,34 @@ In engineering organizations, on-call rotations are crucial. They promote respon
 
 ## The Role and Responsibilities of On-Call
 
-The on-call is primarily tasked with operational responsibilities. Focusing on these tasks rather than standard feature work minimizes the risk of essential action items, which are critical to operational health, being left unattended in the backlog.
+The on-call is primarily tasked with operational responsibilities. This includes:
 
-As the first responders to incoming incidents, the on-call plays a crucial role. They must verify whether the reported issue can be replicated and if it has been prioritized appropriately. Depending on the issue's severity, high-priority matters may need to be addressed immediately.
+- Triaging incoming incidents, which could be reported bugs or automated alerts from observability
+- Resolving incidents according to the company's Service Level Agreements (SLAs) or predefined priorities
+- Following up on issues identified during incident resolution (implementing more robust fixes without the pressure of an SLA deadline)
+- Addressing action items identified in retrospectives or Corrective and Preventive Actions (CAPAs)
 
-When there are no immediate demands based on Service Level Agreements (SLAs), the on-call team should focus on action items. It's important to remember that failing to address gaps in our processes or monitoring could lead to recurring issues.
+Focusing on these tasks rather than standard feature work minimizes the risk of essential action items, which are critical to operational health, being left unattended in the backlog.
 
-## Rotations: Spreading the Load
+As first responders to incidents, the on-call team plays a vital role. They must verify if a reported issue can be replicated and if it has been prioritized correctly. Depending on the severity, high-priority issues may need immediate attention.
 
-To avoid burnout and ensure everyone gets a fair share of responsibilities, spreading the organizational burden through rotations is essential. Depending on the size of your organization and the number of products you manage, you might have a single rotation or multiple rotations handling different areas.
+When there are no pressing demands based on SLAs, the on-call team should focus on action items. Remember, failing to address gaps in our processes or monitoring could result in recurring issues.
 
-Regardless of the setup, it is vital that everyone understands their responsibilities and has access to everything they need. The goal is to create an environment where the whole organization should feel accountable for and able to dive into any area of the system. This helps spread knowledge and ensures that no single engineer is burdened with handling all major issues.
+## Rotations: Distributing Responsibilities
+
+To prevent burnout and ensure fair task distribution, it's essential to implement on-call rotations in an organization. Depending on the size and product range of your organization, you can have a single rotation or several, each targeting different areas.
+
+Regardless of the structure, everyone must understand their responsibilities and have all necessary resources, including secure production deployment capabilities. The goal is to encourage a shared sense of responsibility, allowing everyone to explore any part of the system. This approach spreads knowledge and prevents any one engineer from handling all significant issues in a given system area.
+
+All members of a rotation should have access to and understand the code they manage, and have it ready for local development. This point may seem evident but is often overlooked.
+
+Additionally, on-call staff should be able to push code to production in off-hour hotfix situations. This could involve adjusting permissions in emergency cases, possibly bypassing standard code review and merging processes, skipping longer-running tests, or other deployment steps that could slow down release.
 
 ## Incident Prioritization: Bucketing Incidents
 
-Defining what’s critical for your product and customer needs is a crucial first step in effective incident management. Questions to consider include: Do you have SLA defined? Could more monitoring and alarms of your product's uptime be valuable?
+Defining what’s critical for your product and customer needs is a crucial first step in effective incident management. Questions to consider include:
+- Do you have SLA defined?
+- Could more monitoring and alarms of your product's uptime be valuable?
 
 It's also important to prioritize the critical services and features to your product. For instance, the downtime of a review platform might not be significant enough to page an engineer at night, but a failing payment system certainly would be.
 
@@ -53,11 +66,7 @@ Once you've been paged, your initial task is to confirm and recreate the inciden
 
 ## Mitigation
 
-Before discussing mitigation, it's critical that everyone in the rotation has access to, and an understanding of, the code they oversee. They should have it installed and ready for local development. This may seem obvious, but it's often overlooked.
-
-Additionally, on-call personnel should be able to push code to production in off-hour hotfix situations. This may require adjusting permissions in emergency scenarios, potentially bypassing standard code review, merging processes, skipping longer-running tests, or other deployment steps that could slow release.
-
-If a new feature is causing issues and your team uses feature flags, the quickest mitigation strategy is to toggle that flag. However, other factors like database updates or poorly gated code could complicate this process.
+If a new feature is causing issues and your team uses feature flags, the quickest mitigation strategy is to toggle that flag. However, other factors like database schema updates or poorly gated code could complicate this process.
 
 When toggling a feature flag isn't viable, there are two primary strategies for handling incidents: rolling back code or fixing it forward. Rolling back reverts the system to a previous, functional state. It can be quick but might also undo recent updates. Fixing it forward involves identifying and correcting the current problem without reverting. This may take more time but is typically a more sustainable solution as it directly addresses the issue. The choice between these strategies depends on the incident's severity, the system's complexity, and the available troubleshooting and repair resources.
 
