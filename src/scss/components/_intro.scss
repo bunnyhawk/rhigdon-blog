@@ -1,5 +1,5 @@
 .intro {
-  background: var(--color-theme-highlight-block);
+  background: linear-gradient(var(--color-theme-highlight-block), transparent);
 
   &__summary {
     --flow-space: #{get-size(500)};

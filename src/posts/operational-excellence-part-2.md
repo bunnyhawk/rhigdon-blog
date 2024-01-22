@@ -10,13 +10,13 @@ tags:
 
 ## What is a CAPA?
 
-Hailing from the world of quality management systems, “CAPA” is shorthand for Corrective and Preventive Actions. Understanding the concept can be important to maintaining and improving the standards of any organization.
+Hailing from the world of [quality management systems](https://en.wikipedia.org/wiki/Quality_management_system), “CAPA” is shorthand for Corrective and Preventive Actions. Understanding the concept can be important to maintaining and improving the standards of any organization.
 
 CAPA is a systematic approach to investigate and correct gaps or deficiencies in an organization's systems or processes. It involves two key steps: corrective actions to eliminate the causes of existing deficiencies and preventive actions to prevent potential future ones. Although CAPAs are used in various industries, this article will focus on their application in engineering teams to improve operational health.
 
 ## Incorporating CAPA into Your Workflow
 
-The process starts by identifying a deficiency, followed by an investigation to determine its root cause. In engineering, a high-severity incident often results in a CAPA document. The goal is to retrospectively assess the incident, understand why it occurred, and identify measures to detect or prevent it earlier. Below is a basic template you can use to begin your own process.
+The process starts by identifying a deficiency, followed by an investigation to determine its root cause. In engineering, a [high-severity incident](../operational-excellence-part-1/#heading-incident-prioritization:-bucketing-incidents) often results in a CAPA document. The goal is to retrospectively assess the incident, understand why it occurred, and identify measures to detect or prevent it earlier. Below is a basic template you can use to begin your own process.
 
 | Step | Description |
 | --- | --- |
@@ -41,7 +41,7 @@ After creating a detailed timeline, it's time to dissect the situation.
 
 The "Five Whys" method is simple: when a problem occurs, you drill down to its root cause by asking "Why?" five times. This process enables you to identify countermeasures that can prevent the issue from recurring. For example, when our customer dashboard went down, we traced the problem back to a legacy section of our code that hadn’t been revisited in years by asking "Why?" five times.
 
-*An example:* “Our customer dashboard went down and wasn’t responsive. An enterprise-level customer complained.”
+*The customer dashboard went down and wasn’t responsive. An enterprise-level customer complained.”*
 
 - *Why?* - The APIs that drive the dashboard were throwing 503 errors.
 - *Why?* - The database CPUs were spiking and overloaded.
@@ -53,7 +53,7 @@ The "Five Whys" method is simple: when a problem occurs, you drill down to its r
 
 After identifying the root cause, it's vital to meet with everyone involved in the incident. This includes the person on-call, everyone who assisted, the manager, and any subject matter experts. We often include one or two unrelated people to provide an outsider's perspective and learning opportunity.
 
-While an asynchronous document review is an option, getting people "in the room" often stimulates more dynamic discussions that help isolate the necessary countermeasures. We prefer to spend the first 15-20 minutes reading and commenting on the document together (we typically use a collaborative tool like Google Docs), followed by a discussion and walk-through of open questions. Despite seeming odd to read something as a group, it allows for focused reading in an otherwise busy workday. Everyone is in the room with a single task and agenda. From there, everyone agrees on the action items and the way forward.
+While an asynchronous document review is an option, getting people "in the room" often stimulates more dynamic discussions that help isolate the necessary countermeasures. We prefer to spend the first 15-20 minutes reading and commenting on the document together (typically using a collaborative tool like Google Docs), followed by a discussion and walk-through of open questions. It might seem odd to read something as a group, but it allows for focused reading in an otherwise busy workday. Everyone is in the room with a single task and agenda. From there, everyone agrees on the action items and a path forward.
 
 ## Formulating Action Items
 
@@ -67,7 +67,7 @@ Here are a few potential action items from the hypothetical incident above:
 
 ## Following Up on Open Action Items
 
-You now have a bunch of new items in your already busy backlog. How do you get the team actually to prioritize them? Prioritizing system health and maintenance is never easy; it requires buy-in from leadership. At our company, we task our on-call rotation with this duty, ensuring that we spend at least 20% of engineering’s time on operational excellence. We touch a little more on this approach in [Part 1 of this series](../operational-excellence-part-1).
+You now have a bunch of new items in your already busy backlog. How do you get the team actually to prioritize them? Prioritizing system health and maintenance is never easy; it requires buy-in from leadership. At our company, we task our on-call rotation with this duty. Beyond triage and mitigation of incoming incidents, action items are next on the list of the on-call's tasklist. This ensures that we spend at least 20% of engineering’s time on operational excellence, which includes CAPA items. We touch a little more on this approach in [Part 1 of this series](../operational-excellence-part-1).
 
 ## Conclusion
 

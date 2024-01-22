@@ -17,7 +17,7 @@ The on-call is primarily tasked with operational responsibilities. This includes
 - Triaging incoming incidents, which could be reported bugs or automated alerts from observability
 - Resolving incidents according to the company's Service Level Agreements (SLAs) or predefined priorities
 - Following up on issues identified during incident resolution (implementing more robust fixes without the pressure of an SLA deadline)
-- Addressing action items identified in retrospectives or Corrective and Preventive Actions (CAPAs)
+- Addressing action items identified in retrospectives or [Corrective and Preventive Actions (CAPAs)](../operational-excellence-part-2/)
 
 Focusing on these tasks rather than standard feature work minimizes the risk of essential action items, which are critical to operational health, being left unattended in the backlog.
 
