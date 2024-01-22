@@ -4,7 +4,8 @@ date: '2023-12-30'
 tags:
   - soft-skills
   - management
-  - beginner
+  - process
+  - operational health
 ---
 
 In engineering organizations, on-call rotations are crucial. They promote responsible coding practices through accountability and enhance trust from customers and stakeholders. Although being on-call sometimes requires working during non-standard hours, a well-structured process and rotation system can substantially reduce this burden.
@@ -75,3 +76,5 @@ When toggling a feature flag isn't viable, there are two primary strategies for 
 ## After Care: Following Up
 
 After an incident has been mitigated, there's still work to be done. It's crucial to ensure that there is space for action items that came out of incidents or retrospectives on major outages. These action items should be considered a very high priority for the person on call and ideally should be tackled right after a P1 or P2 incident if one exists. Remember, the goal is to prevent another disruptive incident, especially off-hours, that could have been avoided if you’d just spent the time needed to address the underlying issue.
+
+**Update:** Check out [Part 2 of this series](../operational-excellence-part-2), a deep dive into CAPAs.
